@@ -9,7 +9,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/api", apiRouter)
+app.use('/api', apiRouter);
 
 app.get('/ping', (req, res) => {
   return res.status(StatusCodes.OK).json({ message: 'pong' });
@@ -17,5 +17,5 @@ app.get('/ping', (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
-  connectDB()
+  connectDB();
 });

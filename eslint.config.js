@@ -6,10 +6,10 @@ import globals from 'globals';
 export default defineConfig([
   {
     files: ['**/*.{js,mjs,cjs}'],
-    plugins: { js, "simple-import-sort": simpleImportSort },
-    rules:{
+    plugins: { js, 'simple-import-sort': simpleImportSort },
+    rules: {
       'simple-import-sort/imports': 'error',
-      'simple-import-sort/exports': 'error',
+      'simple-import-sort/exports': 'error'
     },
     extends: ['js/recommended'],
     languageOptions: {
