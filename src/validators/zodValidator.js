@@ -8,16 +8,16 @@ export const validate = (schema) => {
       await schema.parseAsync(req.body);
       next();
     } catch (error) {
-      console.log('Validation error in zod validator: ', error);
+      console.log('Zod validation error: ', error);
       let explanation = [];
-      let errorMessage = "";
+      let errorMessage = '';
       error?.issues?.forEach((e) => {
-        explanation.push(e?.path[0]+ " : " + e?.message);
-        errorMessage += " : " + `${e?.path[0]} ${e?.message}`;
+        explanation.push(e?.path[0] + ' : ' + e?.message);
+        errorMessage += ' : ' + `${e?.path[0]} ${e?.message}`;
       });
       res.status(StatusCodes.BAD_REQUEST).json(
         custommErrorResponse({
-          message: 'Validation error'+ errorMessage,
+          message: 'Validation error' + errorMessage,
           explanation
         })
       );
