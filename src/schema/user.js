@@ -1,6 +1,11 @@
+import bcrypt from "bcryptjs";
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
+    fullname: {
+        type: String,
+        required: [true, "Fullname is required"],
+    },
     email: {
         type: String,
         required: [true, "Email is required"],
@@ -33,6 +38,11 @@ const userSchema = new mongoose.Schema({
 // Triggered before saving a user
 userSchema.pre("save", function saveUser(next) {
     const user = this;
+    const SALT = bcrypt.genSaltSync(12);
+    const hashedPassword = bcrypt.hashSync(user.password, SALT);
+
+    user.password = hashedPassword;
+
     user.avatar = `http://robohash.org/${user.username}`;
 
     next();
